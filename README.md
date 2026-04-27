@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -71,3 +72,7 @@ export default defineConfig([
   },
 ])
 ```
+=======
+# Blog-Application
+I create this blog application for posting my blogs. I use the react+ typeScript+TailwindCss and mongoDB
+>>>>>>> 8c499db15e51b4cff67aa200476dc50380261ff6
