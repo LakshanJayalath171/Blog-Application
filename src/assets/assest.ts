@@ -63,7 +63,7 @@ import blog_web_dev from "../assets/blog web dev.jpeg"
 
 export const sample_blogs = [
     {
-        id:1,
+        _id:"64f1a9c2b8e4d3a1f0c9b123",
         category:"Web development",
         image:blog_web_dev,
         title:"Building Modern Web Apps with React and Tailwind CSS",
@@ -72,7 +72,7 @@ export const sample_blogs = [
         date:"15 sep 2026"
     },
     {
-        id:2,
+        _id:"5a7d9e3c1f2b4a6d8c0e9f11",
         category:"Ai and Machine Learning",
         image:blog_ai,
         title:"Understanding the Basics of Machine Learning",
@@ -81,7 +81,7 @@ export const sample_blogs = [
         date:"15 sep 2026"
     },
     {
-        id:3,
+        _id:"6512bc9d4e7f3a8c2d1e0b55",
         category:"Cyber security",
         image:blog_cs,
         title:"Protecting Web Applications from Common Threats",
@@ -90,7 +90,7 @@ export const sample_blogs = [
         date:"15 sep 2026"
     },
     {
-        id:4,
+        _id:"60af3d9c8b1e4f7a2c6d5e99",
         category:"Linux",
         image:blog_linux,
         title:"Why Every Developer Should Learn Linux",
@@ -99,7 +99,7 @@ export const sample_blogs = [
         date:"16 oct 2026"
     },
     {
-        id:5,
+        _id:"5f9d7a3c2b1e8f6a4d0c3b22",
         category:"Roadmaps",
         image:blog_roadmap,
         title:"A Clear Path to Becoming a Web Developer",
@@ -108,7 +108,7 @@ export const sample_blogs = [
         date:"15 sep 2026"
     },
     {
-        id:6,
+        _id:"63b2e8d9c1f4a7b5d6e9c333",
         category:"Ai and Machine Learning",
         image:blog_news,
         title:"How AI is Changing the Future of Development",
