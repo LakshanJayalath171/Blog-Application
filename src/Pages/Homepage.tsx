@@ -37,7 +37,7 @@ const Homepage = () => {
 
      <div className="mx-8 grid grid-cols-3">
       {sample_blogs.map((items,index)=>(
-        <BlogCard title={items.title} image={items.image} key={index}/>
+        <BlogCard title={items.title} image={items.image} key={index} _id={items._id}/>
       ))}
      </div>
 
@@ -48,7 +48,7 @@ const Homepage = () => {
 
      <div className="grid grid-cols-3 mx-8 mb-24">
       {sample_blogs.slice(0,3).map((items,index)=>(
-        <BlogCard title={items.title} image={items.image} key={index}/>
+        <BlogCard title={items.title} image={items.image} key={index} _id={items._id}/>
       ))}
      </div>
 

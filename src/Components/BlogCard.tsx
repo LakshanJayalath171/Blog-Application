@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom'
 import ReButton from './ReButton'
 
-const BlogCard = ({title,image}) => {
+const BlogCard = ({title,image,_id}) => {
   return (
-    <div className='relative group w-96 h-56 p-4 rounded-3xl bg-cover bg-center cursor-pointer m-4' style={{ backgroundImage: `url(${image})` }}>
+    <Link to={`blog/${_id}`} className='relative group w-96 h-56 p-4 rounded-3xl bg-cover bg-center cursor-pointer m-4' style={{ backgroundImage: `url(${image})` }}>
         <div className='absolute top-5/8 left-1/12 z-10'>
             <h4 className='poppins-bold text-blue-50 group-hover:opacity-0'>{title}</h4>
         </div>
@@ -12,7 +13,7 @@ const BlogCard = ({title,image}) => {
             <ReButton text={"Read More"}/>
           </div>
         </div>
-    </div>
+    </Link>
   )
 }
 
