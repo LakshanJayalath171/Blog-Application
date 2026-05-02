@@ -1,3 +1,4 @@
+import { Link, } from "react-router-dom";
 import BlogCard from "../Components/BlogCard";
 import CategoryCard from "../Components/CategoryCard";
 import LargeFooter from "../Components/LargeFooter";
@@ -20,7 +21,7 @@ const Homepage = () => {
     {/* blog category section  */}
      <div className="w-full flex items-center justify-between m-2 p-6 px-8">
        <h2 className="text-2xl text-gray-500 poppins-bold">Article Categories</h2>
-       <ReButton text={'Show All Categories'}/>
+       
      </div>
      
      <div className="flex items-center justify-between px-4 overflow-y-auto">
@@ -32,7 +33,9 @@ const Homepage = () => {
      {/* latest blog section  */}
      <div className="w-full flex items-center justify-between m-2 p-6 px-8">
        <h2 className="text-2xl text-gray-500 poppins-bold">Latest Blogs</h2>
-       <ReButton text={'Show All Blogs'}/>
+       <Link to={"/blog/all"}>
+         <ReButton text={'Show All Blogs'}/>
+       </Link>
      </div>
 
      <div className="mx-8 grid grid-cols-3">
@@ -43,7 +46,9 @@ const Homepage = () => {
 
      <div className="w-full flex items-center justify-between m-2 p-6 px-8">
        <h2 className="text-2xl text-gray-500 poppins-bold">Popular Blogs</h2>
-       <ReButton text={'Show All Blogs'}/>
+       <Link to={"/blog/all"}>
+         <ReButton text={'Show All Blogs'}/>
+       </Link>
      </div>
 
      <div className="grid grid-cols-3 mx-8 mb-24">

@@ -15,32 +15,38 @@ export const blogCategories = [
     {
         id:1,
         name:"Web Development",
-        image:webdevelopment   
+        image:webdevelopment,
+        blogs:10   
     },
     {
         id:2,
         name:"Cyber Security",
-        image:cyberSecurity
+        image:cyberSecurity,
+        blogs:12
     },
     {
         id:3,
         name:"Linux",
-        image:linux
+        image:linux,
+        blogs:20
     },
     {
         id:4,
         name:"Roadmaps",
-        image:rodmaps
+        image:rodmaps,
+        blogs:22
     },
     {
         id:5,
         name:"Tech News",
-        image:techNews
+        image:techNews,
+        blogs:8
     },
     {
         id:6,
         name:"AI and Machine Learning",
-        image:ai
+        image:ai,
+        blogs:12
     }
 ]
 

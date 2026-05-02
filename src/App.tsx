@@ -3,6 +3,7 @@ import Homepage from "./Pages/Homepage"
 import Login from "./Pages/Login"
 import BlogPage from "./Pages/BlogPage"
 import AllBlogs from "./Pages/AllBlogs"
+import Dashbord from "./Pages/Dashbord"
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
           <Route path="/admin/login" element={<Login/>}/>
           <Route path='/blog/:id' element={<BlogPage/>}/>
           <Route path="/blog/all" element={<AllBlogs/>}/>
+          <Route path="/admin/dashbord" element={<Dashbord/>}/>
         </Routes>
     </div>
   )
