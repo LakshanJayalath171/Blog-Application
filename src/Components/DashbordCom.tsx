@@ -7,7 +7,6 @@ import DashbordNavbar from "./DashbordNavbar";
 const DashbordCom = () => {
   return (
     <div>
-      <DashbordNavbar />
       <div className="flex items-center h-full p-2">
         {/* left div  */}
         <div className="flex-1">

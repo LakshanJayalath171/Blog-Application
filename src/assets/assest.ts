@@ -55,8 +55,9 @@ export const blogCategories = [
 import hero from "../assets/hero.png"
 import logo from "../assets/logo.png"
 import phone from "../assets/White and Blue Clean Phone Notification Facebook Story-Photoroom.png"
+import uploadImg from "../assets/upload.jpg"
 
-export {hero,logo,phone}
+export {hero,logo,phone,uploadImg}
 
 // sample blog section 
 

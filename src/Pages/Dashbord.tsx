@@ -9,6 +9,7 @@ import DashbordCom from "../Components/DashbordCom";
 import AddItem from "../Components/AddItem";
 import BlogList from "../Components/BlogList";
 import Comments from "../Components/Comments";
+import DashbordNavbar from "../Components/DashbordNavbar";
 
 
 const Dashbord = () => {
@@ -67,7 +68,9 @@ const Dashbord = () => {
         </div>
       </div>
       {/* right div  */}
+      
       <div className="flex-4 relative">
+        <DashbordNavbar />
         <div>{item === "dashbord" && <DashbordCom/>}</div>
         <div>{item === "additem" && <AddItem/>}</div>
         <div>{item === "bloglist" && <BlogList/>}</div>
