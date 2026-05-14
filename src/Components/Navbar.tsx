@@ -1,9 +1,15 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import { blogCategories, logo } from "../assets/assest";
 import ReButton from "./ReButton";
+import { useAppContext } from "../context/AppContext";
+import { useState } from "react";
+
 
 
 const Navbar = () => {
+
+    
+
   return (
     <div className="flex items-center justify-center gap-56 w-full">
         

@@ -4,10 +4,12 @@ import Login from "./Pages/Login"
 import BlogPage from "./Pages/BlogPage"
 import AllBlogs from "./Pages/AllBlogs"
 import Dashbord from "./Pages/Dashbord"
+import { Toaster } from "react-hot-toast"
 
 const App = () => {
   return (
     <div>
+      <Toaster/>
         <Routes>
           <Route path="/" element={<Homepage/>}/>
           <Route path="/admin/login" element={<Login/>}/>

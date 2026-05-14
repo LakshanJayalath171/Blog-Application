@@ -27,6 +27,22 @@ const BlogPage = () => {
 
     const [reaction, setReaction]= useState(null)
 
+    const upvoteHandle = ()=>{
+        if(reaction == "upvote"){
+            setReaction(null)
+        }
+        else{
+            setReaction('upvote')
+        }
+    }
+    const downvotehandle = ()=>{
+        if(reaction == 'downvote'){
+            setReaction(null)
+        }
+        else{
+            setReaction('downvote')
+        }
+    } 
 
   return data ? (
     <div>
@@ -45,7 +61,7 @@ const BlogPage = () => {
                 <p>{data.date}</p>
 
                 <div className='w-full h-full flex items-center justify-center gap-3'>
-                    <div className='text-center mx-4 my-2' onClick={()=>setReaction('upvote')}>
+                    <div className='text-center mx-4 my-2' onClick={()=>upvoteHandle()}>
                         <div className='mx-3'>
                             {reaction=='upvote' ? <BiSolidLike className='text-3xl'/>:<BiLike className='text-3xl'/>}
                         </div>
@@ -53,7 +69,7 @@ const BlogPage = () => {
                         <p className='poppins-semibold'>UpVote</p>
                     </div>
 
-                    <div className='text-center mx-4 my-2' onClick={()=>setReaction('downvote')}>
+                    <div className='text-center mx-4 my-2' onClick={()=>downvotehandle()}>
                         <div className='mx-4'>{reaction=='downvote'? <BiSolidDislike className='text-3xl'/>:<BiDislike className='text-3xl'/>}</div>
                         <p className='poppins-semibold'>DownVote</p>
                     </div>
