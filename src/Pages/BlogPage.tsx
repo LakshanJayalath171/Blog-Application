@@ -80,7 +80,7 @@ const BlogPage = () => {
         {/* image section  */}
 
         <div className='w-screen h-full flex items-center justify-center'>
-            <img src={data.image} alt="blog image" className='w-[800px]' />
+            <img src={data.image} alt="blog image" className='w-[800px] h-[450px]' />
         </div>
 
         {/* blog content  */}
