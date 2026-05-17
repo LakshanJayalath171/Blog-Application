@@ -83,7 +83,7 @@ const BlogList = () => {
           {allBlogs.map((items, index) => (
             <tr className="text-center" key={items._id}>
               <td className="poppins-semibold text-gray-800">{index}</td>
-              <td className="poppins-semibold text-gray-800">{items.title.slice(0,20)}</td>
+              <td className="poppins-semibold text-gray-800 text-start pl-10">{items.title.slice(0,35)}</td>
               <td className="poppins-semibold text-gray-800">{items.createdAt.slice(0,10)}</td>
               <td className="poppins-semibold text-gray-800">
                 <div className={`flex items-center justify-center gap-3 ${items.isPublished ? "":"hidden"}`}>

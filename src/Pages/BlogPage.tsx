@@ -1,50 +1,103 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { data, Link, useParams } from 'react-router-dom'
 import { hero, sample_blogs } from '../assets/assest';
 import { IoArrowBackCircle } from "react-icons/io5";
 import { BiLike, BiDislike , BiSolidDislike ,BiSolidLike} from "react-icons/bi";
 import SmallFooter from '../Components/SmallFooter';
+import { useAppContext } from '../context/AppContext';
+import toast from 'react-hot-toast';
+
 
 const BlogPage = () => {
+    
+    const {axios} = useAppContext()
 
     const {id} = useParams();
-    console.log("use params val   "+id)
+    
 
-    const [data,setData]= useState(null)
+    const [blog,setBlog]= useState(null)
 
-    const fetchData = async()=>{
-        const found = sample_blogs.find(items =>items._id.trim() === id)
-        console.log(found)
-        setData(found)
+    // getting blog data
+
+    const getBlogByID = async ()=>{
+        try {
+            const {data} = await axios.get(`/api/blog/${id}`);
+            
+            if(data.success){
+                setBlog(data.blog)
+                
+            }
+            else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
     }
 
+    // make upvote 
+    const makeUpVote = async(_id)=>{
+        try {
+            const {data} = await axios.post("/api/blog/upvote",{blogId:_id})
+
+            if(data.success){
+                
+            }
+            else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
+    // make downvote 
+
+    const makeDownVote = async(_id)=>{
+        try {
+            const {data} = await axios.post("/api/blog/downvote",{blogId:_id})
+
+            if(data.success){
+               
+            }
+            else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
     
+
 
     useEffect(()=>{
         if(!id)return
-        fetchData()
+        getBlogByID()
     },[])
 
+    
     const [reaction, setReaction]= useState(null)
 
-    const upvoteHandle = ()=>{
+    const upvoteHandle = (_id)=>{
         if(reaction == "upvote"){
             setReaction(null)
         }
         else{
             setReaction('upvote')
+            makeUpVote(_id)
         }
     }
-    const downvotehandle = ()=>{
+    const downvotehandle = (_id)=>{
         if(reaction == 'downvote'){
             setReaction(null)
         }
         else{
             setReaction('downvote')
+            makeDownVote(_id)
         }
     } 
 
-  return data ? (
+  return blog ? (
     <div>
         {/* upper navbar section  */}
         <div className='mx-8 my-2'>
@@ -56,12 +109,12 @@ const BlogPage = () => {
         {/* blog title section  */}
         <div className='w-screen h-full flex items-center justify-center'>
             <div className='text-center'>
-                <h1 className='poppins-bold text-3xl m-2'>{data.title}</h1>
-                <h4 className='poppins-light text-2xl text-gray-700'>{data.category}</h4>
-                <p>{data.date}</p>
+                <h1 className='poppins-bold text-3xl m-2'>{blog.title}</h1>
+                <h4 className='poppins-light text-2xl text-gray-700'>{blog.category}</h4>
+                <p>{blog.date}</p>
 
                 <div className='w-full h-full flex items-center justify-center gap-3'>
-                    <div className='text-center mx-4 my-2' onClick={()=>upvoteHandle()}>
+                    <div className='text-center mx-4 my-2' onClick={()=>upvoteHandle(blog._id)}>
                         <div className='mx-3'>
                             {reaction=='upvote' ? <BiSolidLike className='text-3xl'/>:<BiLike className='text-3xl'/>}
                         </div>
@@ -69,7 +122,7 @@ const BlogPage = () => {
                         <p className='poppins-semibold'>UpVote</p>
                     </div>
 
-                    <div className='text-center mx-4 my-2' onClick={()=>downvotehandle()}>
+                    <div className='text-center mx-4 my-2' onClick={()=>downvotehandle(blog._id)}>
                         <div className='mx-4'>{reaction=='downvote'? <BiSolidDislike className='text-3xl'/>:<BiDislike className='text-3xl'/>}</div>
                         <p className='poppins-semibold'>DownVote</p>
                     </div>
@@ -80,13 +133,15 @@ const BlogPage = () => {
         {/* image section  */}
 
         <div className='w-screen h-full flex items-center justify-center'>
-            <img src={data.image} alt="blog image" className='w-[800px] h-[450px]' />
+            <img src={blog.image} alt="blog image" className='w-[800px] h-[450px]' />
         </div>
 
         {/* blog content  */}
 
         <div className='px-36 mt-10 mb-10'>
-            <p className='poppins-light'>{data.content}</p>
+            <div className='quill'>
+                <div className='ql-editor' dangerouslySetInnerHTML={{__html:blog.content}}></div>
+            </div>
         </div>
         <SmallFooter/>
     </div>

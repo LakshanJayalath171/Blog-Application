@@ -4,8 +4,37 @@ import { logo } from "../assets/assest"
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import BlogCard from "../Components/BlogCard";
 import SmallFooter from "../Components/SmallFooter";
+import { useEffect, useState } from "react";
+import { useAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 const AllBlogs = () => {
+
+    const {axios} = useAppContext()
+
+    const [allBlogs ,setAllBlogs] = useState([])
+
+    const getAllBlogs = async ()=>{
+        try {
+            const {data} = await axios.get("/api/blog/all");
+            console.log(data)
+            
+            if(data.success){
+                setAllBlogs(data.blogs)
+                console.log(allBlogs)
+            }
+            else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
+    useEffect(()=>{
+        getAllBlogs()
+    },[])
+
   return (
     <div>
         {/* hero section  */}
@@ -27,7 +56,7 @@ const AllBlogs = () => {
         {/* blog section  */}
 
         <div className="w-full px-8 grid grid-cols-3">
-            {sample_blogs.map((items,index)=>(
+            {allBlogs.map((items,index)=>(
                 <BlogCard title={items.title} image={items.image} _id={items._id}/>
             ))}
         </div>
