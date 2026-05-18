@@ -5,6 +5,8 @@ import BlogPage from "./Pages/BlogPage"
 import AllBlogs from "./Pages/AllBlogs"
 import Dashbord from "./Pages/Dashbord"
 import { Toaster } from "react-hot-toast"
+import CategoryPage from "./Pages/CategoryPage"
+
 
 const App = () => {
   return (
@@ -16,6 +18,7 @@ const App = () => {
           <Route path='/blog/:id' element={<BlogPage/>}/>
           <Route path="/blog/all" element={<AllBlogs/>}/>
           <Route path="/admin/dashbord" element={<Dashbord/>}/>
+          <Route path="/:category" element={<CategoryPage/>}/>
         </Routes>
     </div>
   )

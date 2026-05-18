@@ -5,8 +5,54 @@ import LargeFooter from "../Components/LargeFooter";
 import Navbar from "../Components/Navbar"
 import ReButton from "../Components/ReButton";
 import { blogCategories, hero, sample_blogs } from "../assets/assest";
+import { useAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 const Homepage = () => {
+
+  const [blog,setBlog] = useState([])
+  const [popular,setPopular] = useState([])
+
+  const {axios} = useAppContext()
+
+  const blogByDate = async()=>{
+    try {
+      const {data} = await axios.get("/api/blog/date")
+      
+      if(!data){
+        toast.error("No data found")
+      }
+      else{
+        setBlog(data.blog)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  const popularBlogs = async()=>{
+    try {
+      const {data} =await axios.get("/api/blog/popular")
+
+      console.log(data)
+      if(data.success){
+        setPopular(data.blogs)
+      }
+      else{
+        toast.error(data.message)
+      }
+
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  useEffect(()=>{
+    blogByDate()
+    popularBlogs()
+  },[])
+
   return (
     <div>
 
@@ -24,9 +70,11 @@ const Homepage = () => {
        
      </div>
      
-     <div className="flex items-center justify-between px-4 overflow-y-auto">
+     <div className="flex items-center justify-between px-4 overflow-y-auto scroll-smooth">
        {blogCategories.map((items,index)=>(
-        <CategoryCard key={index} title={items.name} image={items.image}/>
+        <Link to={`/${items.name}`}>
+          <CategoryCard key={index} title={items.name} image={items.image}/>
+        </Link>
        ))}
      </div>
 
@@ -39,7 +87,7 @@ const Homepage = () => {
      </div>
 
      <div className="mx-8 grid grid-cols-3">
-      {sample_blogs.map((items,index)=>(
+      {blog.slice(0,6).map((items,index)=>(
         <BlogCard title={items.title} image={items.image} key={index} _id={items._id}/>
       ))}
      </div>
@@ -52,7 +100,7 @@ const Homepage = () => {
      </div>
 
      <div className="grid grid-cols-3 mx-8 mb-24">
-      {sample_blogs.slice(0,3).map((items,index)=>(
+      {popular.slice(0,3).map((items,index)=>(
         <BlogCard title={items.title} image={items.image} key={index} _id={items._id}/>
       ))}
      </div>
