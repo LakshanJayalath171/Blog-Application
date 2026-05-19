@@ -47,7 +47,7 @@ const CategoryPage = () => {
         </div>
       </div>
 
-      <div className="w-screen overflow-hidden flex flex-row">
+      <div className="w-screen overflow-hidden flex flex-row-2 md:row-2 lg:row-3">
         {blogs.map((items,index)=>(
             <BlogCard title={items.title} image={items.image} _id={items._id}/>
         ))}

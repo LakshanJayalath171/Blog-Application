@@ -133,12 +133,12 @@ const BlogPage = () => {
         {/* image section  */}
 
         <div className='w-screen h-full flex items-center justify-center'>
-            <img src={blog.image} alt="blog image" className='w-[800px] h-[450px]' />
+            <img src={blog.image} alt="blog image" className='w-[400px] h-[250px] md:w-[500px] md:h-[300px] lg:w-[800px] lg:h-[500px]' />
         </div>
 
         {/* blog content  */}
 
-        <div className='px-36 mt-10 mb-10'>
+        <div className='px-10 mt-10 md:px-24 lg:px-48 mb-10'>
             <div className='quill'>
                 <div className='ql-editor' dangerouslySetInnerHTML={{__html:blog.content}}></div>
             </div>
