@@ -10,14 +10,26 @@ import AddItem from "../Components/AddItem";
 import BlogList from "../Components/BlogList";
 import Comments from "../Components/Comments";
 import DashbordNavbar from "../Components/DashbordNavbar";
+import { useAppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Dashbord = () => {
 
     const [item,setItem] = useState('dashbord');
+    const {token,setToken} = useAppContext()
+
+    const navigate = useNavigate()
+    const logout = ()=>{
+      localStorage.removeItem('token')
+      setToken(null)
+      navigate("/admin/login")
+    }
 
   return (
-    <div className="flex">
+    <>
+     {token ? <div className="flex">
       {/* left div  */}
       <div className="flex-1">
         <div className="bg-[#03132D] h-screen relative">
@@ -60,7 +72,7 @@ const Dashbord = () => {
           </div>
 
           <div className="absolute bottom-6 left-10">
-            <button className="p-3 poppins-semibold rounded-3xl bg-blue-400 px-10 flex items-center justify-center gap-4">
+            <button onClick={()=>logout()} className="cursor-pointer p-3 poppins-semibold rounded-3xl bg-blue-400 px-10 flex items-center justify-center gap-4">
               {" "}
               <FiLogOut className="text-2xl" /> LogOut
             </button>
@@ -76,7 +88,8 @@ const Dashbord = () => {
         <div>{item === "bloglist" && <BlogList/>}</div>
         <div>{item === "comments" && <Comments/>}</div>
       </div>
-    </div>
+    </div>:<div>Login First</div>}
+    </>
   );
 }
 

@@ -16,7 +16,7 @@ const BlogPage = () => {
     
 
     const [blog,setBlog]= useState(null)
-
+    const [reaction, setReaction]= useState(null)
     // getting blog data
 
     const getBlogByID = async ()=>{
@@ -25,7 +25,7 @@ const BlogPage = () => {
             
             if(data.success){
                 setBlog(data.blog)
-                
+                if(data.upvote){}
             }
             else{
                 toast.error(data.message)
@@ -35,13 +35,28 @@ const BlogPage = () => {
         }
     }
 
+    const getVotedState = async ()=>{
+        try {
+            const {data} = await axios.get(`/api/blog/voted/${id}`);
+            if(data.upvoted){
+                setReaction('upvote')
+            }
+            else if(data.downvoted){
+                setReaction('downvote')
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
+    
     // make upvote 
     const makeUpVote = async(_id)=>{
         try {
             const {data} = await axios.post("/api/blog/upvote",{blogId:_id})
 
             if(data.success){
-                
+                setReaction('upvote')                
             }
             else{
                 toast.error(data.message)
@@ -57,8 +72,8 @@ const BlogPage = () => {
         try {
             const {data} = await axios.post("/api/blog/downvote",{blogId:_id})
 
-            if(data.success){
-               
+            if(data.success ){
+               setReaction("downvote")
             }
             else{
                 toast.error(data.message)
@@ -73,10 +88,12 @@ const BlogPage = () => {
     useEffect(()=>{
         if(!id)return
         getBlogByID()
+        getVotedState()
+
     },[])
 
     
-    const [reaction, setReaction]= useState(null)
+    
 
     const upvoteHandle = (_id)=>{
         if(reaction == "upvote"){
